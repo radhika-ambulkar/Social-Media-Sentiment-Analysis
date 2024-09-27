@@ -1,40 +1,49 @@
 # Social-Media-Sentiment-Analysis
 This is my Third internship project at Next24tech Technology and Services. This project deals with the Social-Media-Sentiment-Analysis using data analytics and ML algorithm.
-This is the sentiment140 dataset.
-It contains 1,600,000 tweets extracted using the twitter api . The tweets have been annotated (0 = negative, 2 = neutral, 4 = positive) and they can be used to detect sentiment .
-It contains the following 6 fields:
+The dataset contains 27,481 rows and 4 columns with the following structure:
 
-target: the polarity of the tweet (0 = negative, 2 = neutral, 4 = positive)
-ids: The id of the tweet ( 2087)
-date: the date of the tweet (Sat May 16 23:58:44 UTC 2009)
-flag: The query (lyx). If there is no query, then this value is NO_QUERY.
-user: the user that tweeted (robotickilldozr)
-text: the text of the tweet (Lyx is cool)
+- **Columns:**
+  - `textID`: A unique identifier for each tweet (no missing values).
+  - `text`: The full text of the tweet (1 missing value).
+  - `selected_text`: A part of the tweet that reflects the sentiment (1 missing value).
+  - `sentiment`: The sentiment of the tweet, labeled as either *positive*, *neutral*, or *negative* (no missing values).
+
+### First Few Rows of the Dataset:
+- Example 1: 
+  - Text: "I`d have responded, if I were going"
+  - Selected text: "I`d have responded, if I were going"
+  - Sentiment: Neutral
+- Example 2:
+  - Text: "Sooo SAD I will miss you here in San Diego!!!"
+  - Selected text: "Sooo SAD"
+  - Sentiment: Negative
 
 ### Steps for Sentiment Analysis:
-1. **Preprocess the Data**:
-   - Remove unnecessary columns (e.g., timestamp, query info).
-   - Focus on the tweet text and the sentiment label.
 
-2. **Text Cleaning**:
-   - Convert text to lowercase.
-   - Remove URLs, special characters, punctuation, and numbers.
-   - Handle mentions (e.g., `@username`) and hashtags.
-   - Tokenization (splitting the tweet into words).
-   - Remove stopwords (common words like "the", "and", etc., that don't contribute to sentiment).
-   - Stemming or Lemmatization (reducing words to their base form).
+1. **Data Cleaning:**
+   - Handle missing values in the `text` and `selected_text` columns.
+   - Remove unwanted characters, stop words, and punctuation from the `text`.
 
-3. **Feature Extraction**:
-   - Use **Bag of Words (BoW)**, **TF-IDF**, or **Word Embeddings** (e.g., Word2Vec, GloVe) to convert text into numerical format.
+2. **Text Preprocessing:**
+   - Tokenization: Break down the text into words or tokens.
+   - Lemmatization/Stemming: Convert words to their base forms.
+   - Convert all text to lowercase for uniformity.
 
-4. **Sentiment Classification**:
-   - Train a sentiment classifier using algorithms like **Logistic Regression**, **Naive Bayes**, **Support Vector Machines (SVM)**, or **Deep Learning** models (e.g., **LSTM**, **BERT**).
-   - The label in the dataset (column 0) will act as the target for training.
+3. **Label Encoding:**
+   - Map the `sentiment` labels to numeric values, e.g., Positive = 1, Neutral = 0, Negative = -1.
 
-5. **Model Evaluation**:
-   - Split the data into training and test sets (e.g., 80/20 split).
-   - Evaluate the model using metrics such as **accuracy**, **precision**, **recall**, and **F1-score**.
+4. **Feature Extraction:**
+   - Use techniques like Bag of Words (BoW) or TF-IDF (Term Frequency-Inverse Document Frequency) to convert text data into numerical form.
 
-6. **Tuning & Optimization**:
-   - Perform hyperparameter tuning (e.g., using Grid Search or Random Search) to improve model performance.
-   - Consider using **ensemble methods** (e.g., Random Forest, Gradient Boosting) for better accuracy.
+5. **Model Building:**
+   - Choose a machine learning algorithm (e.g., Logistic Regression, Naive Bayes, or Random Forest) to train a sentiment classification model.
+
+6. **Model Training:**
+   - Split the dataset into training and test sets.
+   - Train the model using the extracted features and sentiment labels.
+
+7. **Model Evaluation:**
+   - Evaluate the model using metrics like accuracy, precision, recall, F1-score, and confusion matrix.
+
+8. **Tuning and Optimization:**
+   - Optimize the model using techniques such as cross-validation and hyperparameter tuning.
